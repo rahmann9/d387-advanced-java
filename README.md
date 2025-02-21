@@ -1,22 +1,16 @@
 #### D387 – ADVANCED JAVA
-##A. 
+###A. 
     #Gitlab:
     https://gitlab.com/wgu-gitlab-environment/student-repos/nrahm29/d387-advanced-java.git
-•   Submit a copy of the repository branch history retrieved from your repository, which must include the commit messages and dates.
 
 Note: Wait until you have completed all the following prompts before you create your copy of the repository branch history.
 
 
-B.  Modify the Landon Hotel scheduling application for localization and internationalization by doing the following:
-
-1.   Install the Landon Hotel scheduling application in your integrated development environment (IDE). Modify the Java classes of application to display a welcome message by doing the following:
-
-a.  Build resource bundles for both English and French (languages required by Canadian law). Include a welcome message in the language resource bundles.
-
-b.  Display the welcome message in both English and French by applying the resource bundles using a different thread for each language.
-
-
-Note: You may use Google Translate for the wording of your welcome message.
+###B
+1.
+- Created `messages_en_USA.properties` and `messages_fr_CA.properties` for English and French localized greetings.
+- Added `WelcomeMessageProvider.java` to retrieve localized welcome messages from the 'messages' resource bundle.
+- Implemented `WelcomeMessageController.java` in the rest folder to handle requests and provide localized greetings to the front-end UI.
 
 
 2.  Modify the front end to display the price for a reservation in currency rates for U.S. dollars ($), Canadian dollars (C$), and euros (€) on different lines.
