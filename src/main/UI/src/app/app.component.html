@@ -5,6 +5,11 @@
     <div class="hgroup">
       <h1>Landon Hotel</h1>
       <h2>London, Ontario</h2>
+
+      <h3 *ngFor="let message of welcomeMessages">
+        {{ message }}
+      </h3>
+
       <p><a href="/#welcome"><img src="assets/images/arrow.png" alt="down arrow"></a></p>
     </div>
   </article>
@@ -23,7 +28,7 @@
   <div class="scene" id="welcome">
     <article class="content">
 
- 
+
 
       <div class="row">
         <div class=""col-12>
@@ -58,7 +63,7 @@
               </div>
               </form>
 
-        
+
         </div>
       </div>
 
@@ -75,7 +80,10 @@
                 </td>
                 <td>
                   <strong>Room #: {{room.roomNumber}}</strong><br/>
-                  <strong>Price: ${{room.price}}</strong>
+                  <strong>Price: ${{ room.price }}</strong><br />
+                  <strong>Price in C$: {{ room.price }}</strong><br />
+                  <strong>Price in €: {{ room.price }}</strong>
+
                 </td>
                 <td>
                   <button type="submit" class="btn btn-primary" (click)="reserveRoom(room.id)">Reserve</button>

@@ -7,21 +7,28 @@ Note: Wait until you have completed all the following prompts before you create 
 
 
 ###B
-1.
+## 1. Install the Landon Hotel scheduling application in your integrated development environment (IDE). Modify the Java classes of application to display a welcome message by doing the following:
+# a.  Build resource bundles for both English and French (languages required by Canadian law). Include a welcome message in the language resource bundles.
+
 - Created `messages_en_USA.properties` and `messages_fr_CA.properties` for English and French localized greetings.
+
+
+# b.  Display the welcome message in both English and French by applying the resource bundles using a different thread for each language.
+
 - Added `WelcomeMessageProvider.java` to retrieve localized welcome messages from the 'messages' resource bundle.
+
 - Implemented `WelcomeMessageController.java` in the rest folder to handle requests and provide localized greetings to the front-end UI.
 
+- In `app.component.ts`, added api endpoint to `WelcomeMessageProvider.java`.
 
-2.  Modify the front end to display the price for a reservation in currency rates for U.S. dollars ($), Canadian dollars (C$), and euros (€) on different lines.
+- In `app.component.html`, added a header to display welcome message.
 
+## 2.  Modify the front end to display the price for a reservation in currency rates for U.S. dollars ($), Canadian dollars (C$), and euros (€) on different lines.
 
-Note: It is not necessary to convert the values of the prices.
+- In `app.component.html`, added currency rates for U.S. dollars ($), Canadian dollars (C$), and euros (€).
 
-
-3.  Display the time for an online live presentation held at the Landon Hotel by doing the following:
-
-a.  Write a Java method to convert times between eastern time (ET), mountain time (MT), and coordinated universal time (UTC) zones.
+## 3.  Display the time for an online live presentation held at the Landon Hotel by doing the following:
+# a.  Write a Java method to convert times between eastern time (ET), mountain time (MT), and coordinated universal time (UTC) zones.
 
 b.  Use the time zone conversion method from part B3a to display a message stating the time in all three times zones in hours and minutes for an online, live presentation held at the Landon Hotel. The times should be displayed as ET, MT, and UTC.
 

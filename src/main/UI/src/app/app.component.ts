@@ -28,14 +28,17 @@ export class AppComponent implements OnInit{
   currentCheckInVal!:string;
   currentCheckOutVal!:string;
 
-    ngOnInit(){
+  public welcomeMessages: string[] = [];
+
+  ngOnInit(){
+      this.fetchWelcomeMessages();
+
       this.roomsearch= new FormGroup({
         checkin: new FormControl(' '),
         checkout: new FormControl(' ')
       });
 
  //     this.rooms=ROOMS;
-
 
     const roomsearchValueChanges$ = this.roomsearch.valueChanges;
 
@@ -44,6 +47,19 @@ export class AppComponent implements OnInit{
       this.currentCheckInVal = x.checkin;
       this.currentCheckOutVal = x.checkout;
     });
+  }
+    fetchWelcomeMessages() {
+      this.httpClient.get(`${this.baseURL}/welcome?lang=en_US`, { responseType: 'text' })
+        .subscribe(response => {
+          console.log(response);
+          this.welcomeMessages.push(response); // Add English message to the list
+      });
+
+    this.httpClient.get(`${this.baseURL}/welcome?lang=fr_CA`, { responseType: 'text' })
+      .subscribe(response => {
+        console.log(response);
+        this.welcomeMessages.push(response); // Add French message to the list
+      });
   }
 
     onSubmit({value,valid}:{value:Roomsearch,valid:boolean}){
