@@ -9,8 +9,7 @@ public class WelcomeMessageProvider {
     private Locale locale;
     private ResourceBundle resourceBundle;
 
-    public WelcomeMessageProvider(){}
-
+    public WelcomeMessageProvider() {}
     public WelcomeMessageProvider(String language, String country) {
         this.locale = new Locale(language, country);
         this.resourceBundle = ResourceBundle.getBundle("messages", locale);

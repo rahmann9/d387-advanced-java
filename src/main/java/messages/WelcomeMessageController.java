@@ -1,4 +1,4 @@
-package edu.wgu.d387_sample_code.rest;
+package messages;
 
 import messages.WelcomeMessageProvider;
 import org.springframework.web.bind.annotation.CrossOrigin;
