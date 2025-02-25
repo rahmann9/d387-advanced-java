@@ -5,13 +5,12 @@
     <div class="hgroup">
       <h1>Landon Hotel</h1>
       <h2>London, Ontario</h2>
-
-      <h3 *ngFor="let message of welcomeMessages">
-        {{ message }}
-      </h3>
-      <div>
-        <p>{{ timeMessage }}</p>
+      <div style="text-align: center; padding: 20px; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 96%; max-width: 960px;">
+        <h3 *ngFor="let message of welcomeMessages" style="display: inline-block; white-space: nowrap;">
+          {{ message }}
+        </h3>
       </div>
+
       <p><a href="/#welcome"><img src="assets/images/arrow.png" alt="down arrow"></a></p>
     </div>
   </article>
@@ -19,6 +18,9 @@
   integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <div class="scrollmagic-pin-spacer"
        style="display: block; top: auto; left: auto; bottom: auto; right: auto; position: relative; margin: 0 auto auto; box-sizing: content-box; width: 100%; min-height: 44px; height: auto; padding-top: 0; padding-bottom: 0;">
+    <div>
+      <p>{{ timeMessage }}</p>
+    </div>
     <nav id="nav" style="position: relative; top: 0; left: 0; bottom: auto; right: auto; width: 100%;">
       <div class="navbar">
         <div class="brand"><a href="/#welcome">Landon <span>Hotel</span></a></div>

@@ -40,6 +40,23 @@ Note: Wait until you have completed all the following prompts before you create 
 C.  Explain how you would deploy the Spring application with a Java back end and an Angular front end to cloud services and create a Dockerfile using the attached supporting document "How to Create a Docker Account" by doing the following:
 
 1.  Build the Dockerfile to create a single image that includes all code, including modifications made in parts B1 to B3. Commit and push the final Dockerfile to GitLab.
+# Start with a base image containing a Java runtime
+FROM openjdk:17-jdk-slim
+
+# Set the working directory inside the Docker image
+WORKDIR /app
+
+# Copy the JAR file provided by mvn clean package
+COPY ../../target/D387_sample_code-0.0.2-SNAPSHOT.jar app.jar
+
+# Make the app accessible on port:8080 for the host machine
+EXPOSE 8080
+
+# Command to run the application
+CMD ["java", "-jar", "app.jar"]
+
+#docker build -t spring-boot-docker1:spring-docker .
+#docker run -p 8080:8080  spring-boot-docker1:spring-docker
 
 2.  Test the Dockerfile by doing the following:
 

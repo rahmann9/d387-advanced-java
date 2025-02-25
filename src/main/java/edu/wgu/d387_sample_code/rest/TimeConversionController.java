@@ -1,4 +1,4 @@
-package messages;
+package edu.wgu.d387_sample_code.rest;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +20,6 @@ public class TimeConversionController {
 
     @GetMapping("/TimeZone")
     public List<String> getTimeZoneConversion() {
-        // Return the formatted times for EST, MST, and UTC
         return timeConversion.getTimeConversion();
     }
 }

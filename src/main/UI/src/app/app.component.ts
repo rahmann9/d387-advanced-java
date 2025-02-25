@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Observable } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -21,8 +21,8 @@ export class AppComponent implements OnInit {
   request!: ReserveRoomRequest;
   currentCheckInVal!: string;
   currentCheckOutVal!: string;
-  public welcomeMessages: string[] = [];
-  public timeMessage: string = "";
+  welcomeMessages: string[] = [];
+  timeMessage: string = "";
 
   ngOnInit() {
     this.fetchWelcomeMessages();
@@ -67,11 +67,18 @@ export class AppComponent implements OnInit {
   }
 
   fetchWelcomeMessages() {
-    this.httpClient.get(`${this.baseURL}/welcome?lang=en_US`, { responseType: 'text' })
-      .subscribe(response => this.welcomeMessages.push(response));
-
-    this.httpClient.get(`${this.baseURL}/welcome?lang=fr_CA`, { responseType: 'text' })
-      .subscribe(response => this.welcomeMessages.push(response));
+    forkJoin([
+      this.httpClient.get(`${this.baseURL}/welcome?lang=en_US`, { responseType: 'text' }),
+      this.httpClient.get(`${this.baseURL}/welcome?lang=fr_CA`, { responseType: 'text' })
+    ]).subscribe({
+      next: ([englishMessage, frenchMessage]) => {
+        this.welcomeMessages = [`English: ${englishMessage}`, `French: ${frenchMessage}`];
+      },
+      error: (error) => {
+        console.error('Error fetching welcome messages:', error);
+        this.welcomeMessages = ['Error fetching welcome messages.'];
+      }
+    });
   }
 
   displayPresentationTime() {
