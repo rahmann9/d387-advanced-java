@@ -11,43 +11,29 @@ import org.springframework.http.HttpStatus;
 @RestController
 public class WelcomeMessageController {
 
+    // Shared method to handle the logic of fetching the welcome message
+    private ResponseEntity<String> getWelcomeMessageFromLang(String lang) {
+        StringBuilder responseMessage = new StringBuilder();
+
+        try {
+            String[] langParts = lang.split("_");
+            String language = langParts[0];
+            String country = langParts.length > 1 ? langParts[1] : "";
+
+            WelcomeMessageProvider provider = new WelcomeMessageProvider(language, country);
+            String welcomeMessage = provider.getWelcomeMessage();
+
+            responseMessage.append(welcomeMessage);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error fetching welcome message", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return new ResponseEntity<>(responseMessage.toString(), HttpStatus.OK);
+    }
+
     @GetMapping("/welcome")
     public ResponseEntity<String> getWelcomeMessage(@RequestParam("lang") String lang) {
-        StringBuilder responseMessage = new StringBuilder();
-
-        try {
-            String[] langParts = lang.split("_");
-            String language = langParts[0];
-            String country = langParts.length > 1 ? langParts[1] : "";
-
-            WelcomeMessageProvider provider = new WelcomeMessageProvider(language, country);
-            String welcomeMessage = provider.getWelcomeMessage();
-
-            responseMessage.append(welcomeMessage);
-
-        } catch (Exception e) {
-            return new ResponseEntity<>("Error fetching welcome message", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
-        return new ResponseEntity<>(responseMessage.toString(), HttpStatus.OK);
+        return getWelcomeMessageFromLang(lang);
     }
 
-    @GetMapping("/")
-    public ResponseEntity<String> getRootWelcomeMessage(@RequestParam(value = "lang", defaultValue = "en_US") String lang) {
-        StringBuilder responseMessage = new StringBuilder();
-
-        try {
-            String[] langParts = lang.split("_");
-            String language = langParts[0];
-            String country = langParts.length > 1 ? langParts[1] : "";
-
-            WelcomeMessageProvider provider = new WelcomeMessageProvider(language, country);
-            String welcomeMessage = provider.getWelcomeMessage();
-
-            responseMessage.append(welcomeMessage);
-        } catch (Exception e) {
-            return new ResponseEntity<>("Error fetching welcome message", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        return new ResponseEntity<>(responseMessage.toString(), HttpStatus.OK);
-    }
 }
