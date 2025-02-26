@@ -1,0 +1,6 @@
+I would select Microsoft Azure as the cloud provider for deploying my multithreaded Spring web application.
+
+First, I would create an Azure Container Registry to securely store my Docker image. This registry will act as a centralized location for storing images before deployment.
+Next, I would build the Docker image for my Spring web application and tag it with a version tag like latest. I would then push this image to the Azure Container Registry using the Azure CLI.
+After pushing the image to ACR, I would create an Azure Container Instance using the image stored in ACR. I would configure the container instance with appropriate settings such as CPU, memory, environment variables, and port mappings.
+Finally, I would deploy the Azure Container Instance, making it accessible via a public IP or DNS. This would run my multithreaded Spring application in the cloud, allowing it to be live and accessible online.
